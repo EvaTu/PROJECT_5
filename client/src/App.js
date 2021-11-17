@@ -19,7 +19,6 @@ function App() {
   const [products, setProducts] = useState([])
   const [detailForm, setDetailForm] = useState([])
   const [currentUser, setCurrentUser] = useState([])
-  const [authChecked, setAuthChecked] = useState(false)
   const [newProductInput, setNewProduct] = useState(
     {name: '', cat: '', image: '', price: 0 , color: '', inventory: 0, description: '' }
     );
@@ -33,7 +32,7 @@ function App() {
       if(res.ok){
         res.json().then( user =>{
           setCurrentUser(user)
-          setAuthChecked(true)
+          
         })
       }
     })
@@ -87,7 +86,7 @@ function App() {
   console.log(currentUser)
   return (
     <div className="App">
-      <Header/>
+      <Header currentUser={currentUser}/>
       <Switch>
         <Route path="/AddProduct">
           <AddProduct newProductInput={newProductInput} setNewProduct={setNewProduct} handleProductSub={handleProductSub} currentUser={currentUser}/>

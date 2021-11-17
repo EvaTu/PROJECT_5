@@ -25,9 +25,10 @@ function ShoppingCart({detailForm,onDelete,setDetailForm,currentUser}){
         .then(res => res.json())
         .then(() => {
             setEmptyCart(true)
-            setDetailForm([])
+            // setDetailForm([])
         })
       })
+      setDetailForm([])
      }
 
 

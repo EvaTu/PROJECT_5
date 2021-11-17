@@ -20,7 +20,7 @@ function LogIn({setCurrentUser}){
             if (res.ok) {
               res.json().then(user => {
                 setCurrentUser(user)
-                // history.push('/orders')
+                history.push('/MyAccount')
               })
             } else {
               res.json().then(errors => {

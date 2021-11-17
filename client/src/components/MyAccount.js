@@ -16,7 +16,7 @@ function MyAccount({currentUser, handleLogout}){
     return(
         <div>
             {currentUser.length === 0? 
-            (<h1>Please Log In to View Order History</h1>)
+            (<h1>Please Login to View Order History</h1>)
             :
             (<div>
             <button onClick={handleLogout}>Logout</button>
