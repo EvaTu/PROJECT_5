@@ -1,4 +1,6 @@
 class Api::ProductsController < ApplicationController
+    
+
     def index
         products = Product.all    
         render json: products
@@ -11,7 +13,7 @@ class Api::ProductsController < ApplicationController
 
     def create
         @new_product = Product.new(product_params)
-        @current_user.admin = true
+        # @current_user.admin = true
         if @new_product.save
             render json: @new_product, status: :created
         else

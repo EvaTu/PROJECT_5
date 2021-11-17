@@ -2,9 +2,11 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-#
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
 Product.destroy_all
 User.destroy_all
 Order.destroy_all
@@ -28,9 +30,9 @@ puts "🌱 Seeding spices..."
     slim = Product.create(name: "Slim Mom High Ankle Jeans", cat: "pant", image: "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fdb%2Fc7%2Fdbc78dd2e36464c10c7f779890a550ced8f2c50d.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bladies_jeans_mom%5D%2Ccat%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]", price: 24.99, color: "Light beige", inventory: 22, description: "5-pocket, ankle-length jeans in slightly stretchy denim. Extra-high waist, zip fly, and gently tapered legs. Cotton content is partly recycled.")
 
     
-    eva = User.create(first_name: "Eva", last_name: "Tu", email: "evatu@gmail.com", password: "12345", password_confirmation: "12345", admin: true)
-    name1 = User.create(first_name: "Test1", last_name: "Test1", email: "testt1@gmail.com", password: "11111", password_confirmation: "11111", admin: false)
-    name2 = User.create(first_name: "Test2", last_name: "Test2", email: "testt2@gmail.com", password: "22222", password_confirmation: "22222", admin: false)
+    eva = User.create(first_name: "Eva", last_name: "Tu", email: "evatu@gmail.com", password: "12345", admin: true)
+    name1 = User.create(first_name: "Test1", last_name: "Test1", email: "testt1@gmail.com", password: "11111", admin: false)
+    name2 = User.create(first_name: "Test2", last_name: "Test2", email: "testt2@gmail.com", password: "22222", admin: false)
     
     
     Order.create(user:name1,product:slim,select:1)

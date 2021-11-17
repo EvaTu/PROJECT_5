@@ -10,19 +10,20 @@ class Api::OrdersController < ApplicationController
     end
 
     def create
-        @new_order = Order.new(order_params)
-        @new_order.user = @current_user
+        # byebug
+        @new_order = current_user.orders.build(order_params)
+        # byebug
         if @new_order.save
             render json: @new_order, status: :created
         else
-            render json: @new_order.errors.full_messages, status: :unprocessable_entity
+            render json: @new_order.errors, status: :unprocessable_entity
         end
     end
 
     private 
     
     def order_params
-        params.permit(:select)
+        params[:order].permit(:user_id, :product_id, :select)
     end
 
 

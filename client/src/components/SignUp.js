@@ -28,7 +28,7 @@ function SignUp({setCurrentUser}){
             if (res.ok) {
               res.json().then(user => {
                 setCurrentUser(user)
-                history.push('/orders')
+                // history.push('/orders')
               })
             } else {
               res.json().then(errors => {

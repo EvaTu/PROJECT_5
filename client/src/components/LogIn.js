@@ -20,7 +20,7 @@ function LogIn({setCurrentUser}){
             if (res.ok) {
               res.json().then(user => {
                 setCurrentUser(user)
-                history.push('/orders')
+                // history.push('/orders')
               })
             } else {
               res.json().then(errors => {
@@ -33,6 +33,7 @@ function LogIn({setCurrentUser}){
 
     return(
         <div>
+        
         <h1>Log In Form Here</h1>
         <form onSubmit={handleSubmit}>
             <label>Email: </label>

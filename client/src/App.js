@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import Header from './components/Header'
-import { Switch, Route} from 'react-router-dom'
+import { Switch, Route, useHistory} from 'react-router-dom'
 import SignUp from './components/SignUp'
 import LogIn from './components/LogIn'
 import ShoppingCart from './components/ShoppingCart'
@@ -12,16 +12,32 @@ import AboutUs from './components/AboutUs'
 import News from './components/News'
 import ProductDetail from './components/ProductDetail'
 import AddProduct from './components/AddProduct'
-import User from './components/User'
+import MyAccount from './components/MyAccount'
 
 function App() {
+  const history = useHistory()
   const [products, setProducts] = useState([])
   const [detailForm, setDetailForm] = useState([])
-  const [confirmOrder, setConfirmOrder] = useState([])
   const [currentUser, setCurrentUser] = useState([])
+  const [authChecked, setAuthChecked] = useState(false)
   const [newProductInput, setNewProduct] = useState(
     {name: '', cat: '', image: '', price: 0 , color: '', inventory: 0, description: '' }
     );
+  
+
+  useEffect(()=>{
+    fetch("/api/me",{
+      credentials: "include"
+    })
+    .then(res => {
+      if(res.ok){
+        res.json().then( user =>{
+          setCurrentUser(user)
+          setAuthChecked(true)
+        })
+      }
+    })
+  },[])
 
   useEffect(()=>{
     fetch("/api/products")
@@ -31,9 +47,11 @@ function App() {
 
   function handelShoppingSub(event,selectNum,clickedPro){
     event.preventDefault()
-    let orderInfo = {...clickedPro, order: selectNum}
+    let orderInfo = {...clickedPro, select: selectNum}
     setDetailForm([...detailForm, orderInfo])
   }
+ 
+
 
   function handleProductSub(event){
     event.preventDefault()
@@ -45,6 +63,19 @@ function App() {
       .then(resp => resp.json())
       .then(() => setNewProduct({name: '', cat: '', image: '', price: 0, color: '', inventory: 0, description: ''}))
   }
+
+  const handleLogout = () => {
+    fetch("/api/logout", {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+      .then(res => {
+        if (res.ok) {
+          setCurrentUser([])
+          history.push('/')
+        }
+      })
+  }
   
   
 
@@ -53,13 +84,13 @@ function App() {
     setDetailForm(updatedShopCart)
   }
   
-
+  console.log(currentUser)
   return (
     <div className="App">
-      <Header />
+      <Header/>
       <Switch>
         <Route path="/AddProduct">
-          <AddProduct newProductInput={newProductInput} setNewProduct={setNewProduct} handleProductSub={handleProductSub}/>
+          <AddProduct newProductInput={newProductInput} setNewProduct={setNewProduct} handleProductSub={handleProductSub} currentUser={currentUser}/>
         </Route>
         <Route path="/SignUp">
           <SignUp setCurrentUser={setCurrentUser}/>
@@ -67,11 +98,11 @@ function App() {
         <Route path="/LogIn">
           <LogIn setCurrentUser={setCurrentUser}/>
         </Route>
-        <Route path="/User">
-          <User confirmOrder={confirmOrder}/>
+        <Route path="/MyAccount">
+          <MyAccount currentUser={currentUser} handleLogout={handleLogout}/>
         </Route>
         <Route path="/ShoppingCart">
-          <ShoppingCart detailForm={detailForm} onDelete={onDelete} setConfirmOrder={setConfirmOrder} confirmOrder={confirmOrder}/>
+          <ShoppingCart detailForm={detailForm} setDetailForm={setDetailForm} onDelete={onDelete} currentUser={currentUser}/>
         </Route>
         <Route path="/ProductList/:id">
           <ProductDetail handelShoppingSub={handelShoppingSub}/>
@@ -89,7 +120,7 @@ function App() {
           <Home />
         </Route>
       </Switch>
-      <Footer />
+      <Footer currentUser={currentUser}/>
     </div>
   );
 }

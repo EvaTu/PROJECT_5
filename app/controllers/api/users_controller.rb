@@ -1,8 +1,10 @@
 class Api::UsersController < ApplicationController
-    def index
-        users = User.all    
-        render json: users
-    end
+    # def index
+    #     users = User.all    
+    #     render json: users
+    # end
+    
+    
 
     def show
         if current_user
@@ -13,10 +15,13 @@ class Api::UsersController < ApplicationController
     end
 
     def create 
-        @new_user = User.create!(user_params)
-        session[:user_id] = @new_user.id
-        render json: @new_user,
-        status: :created
+        user = User.new(user_params)
+        if user.save
+            session[:user_id] = user.id
+            render json: user, status: :created
+        else
+            render json: user.errors, status: :unprocessable_entity
+        end
     end 
 
     private 

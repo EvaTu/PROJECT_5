@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :orders, only: [:index, :show, :create]
-    resources :users, only: [:index, :show, :create]
+    # resources :users, only: [:index, :show, :create]
     resources :products, only: [:index, :show, :create]
 
-    get '/user', to: 'users#show'
+    get '/me', to: 'users#show'
     post '/signup', to: 'users#create'
-    post '/login', to: 'session#create'
-    delete '/logout', to: 'session#destroy'
+    post '/login', to: 'sessions#create'
+    delete '/logout', to: 'sessions#destroy'
 
   end
   # Routing logic: fallback requests for React Router.

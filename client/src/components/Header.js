@@ -10,7 +10,7 @@ function Header(){
             <Link to="/LogIn"style={{margin:"20px"}}>Log In</Link>
             <Link to="/ShoppingCart"style={{margin:"20px"}}>Shopping Cart</Link>
             <Link to="/ProductList"style={{margin:"20px"}}>Products</Link>
-            <Link to="/User"style={{margin:"20px"}}>My Account</Link>
+            <Link to="/MyAccount"style={{margin:"20px"}}>My Account</Link>
            
         </div>
     )
