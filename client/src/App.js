@@ -24,6 +24,8 @@ function App() {
     );
   
 
+  
+
   useEffect(()=>{
     fetch("/api/me",{
       credentials: "include"
@@ -86,7 +88,7 @@ function App() {
   console.log(currentUser)
   return (
     <div className="App">
-      <Header currentUser={currentUser}/>
+      <Header currentUser={currentUser} />
       <Switch>
         <Route path="/AddProduct">
           <AddProduct newProductInput={newProductInput} setNewProduct={setNewProduct} handleProductSub={handleProductSub} currentUser={currentUser}/>

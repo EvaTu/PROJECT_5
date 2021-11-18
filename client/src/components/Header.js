@@ -1,19 +1,54 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 function Header({currentUser}){
+    const [click, setClick] = useState(false)
+    const [button, setButton] = useState(true);
+
+    const handleClick = () => setClick(!click)
+    const closeMobileMenu = () => setClick(false)
+    
+    const showButton = () => {
+        if (window.innerWidth <= 960) {
+        setButton(false);
+        } else {
+        setButton(true);
+        }
+    };
+
+    useEffect(() => {
+        showButton();
+    }, []);
+        
+    window.addEventListener('resize', showButton);
 
     return(
-        <div id="header">
-            
-            <Link exact to="/"><h1>Women Wear What</h1></Link>
-            <Link to="/SignUp" style={{margin:"20px"}}>Sign Up</Link>
-            <Link to="/LogIn"style={{margin:"20px"}}>Log In</Link>
-            <Link to="/ShoppingCart"style={{margin:"20px"}}>Shopping Cart</Link>
-            <Link to="/ProductList"style={{margin:"20px"}}>Products</Link>
-            <Link to="/MyAccount"style={{margin:"20px"}}>My Account</Link>
-            {currentUser.length === 0?(<p>Welcome to WWW</p>): (<p>Welcome {currentUser.first_name}</p>)}
-           
+        <div className="header">
+            <div className="header-container">
+                <Link exact to="/" className="header-logo"><h1>Women Wear What</h1></Link>           
+                {currentUser.length === 0?(<p>Welcome to WWW</p>): (<p>Welcome {currentUser.first_name}</p>)}
+                <div className='menu-icon' onClick={handleClick}>
+                    <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+                </div>
+                <ul className={click ? 'header-menu active' : 'header-menu'}>
+                    <li className="header-item">
+                        <Link to="/SignUp" className="header-links" onClick={closeMobileMenu}>Sign Up</Link>
+                    </li>
+                    <li className="header-item">
+                        <Link to="/LogIn" className="header-links" onClick={closeMobileMenu}>Log In</Link>
+                    </li>
+                    <li className="header-item">
+                        <Link to="/ShoppingCart" className="header-links" onClick={closeMobileMenu}>Shopping Cart</Link>
+                    </li>
+                    <li className="header-item">
+                        <Link to="/ProductList" className="header-links" onClick={closeMobileMenu}>Products</Link>
+                    </li>
+                    <li className="header-item">
+                        <Link to="/MyAccount" className="header-links" onClick={closeMobileMenu}>My Account</Link>
+                    </li>
+                </ul>
+                
+          </div>
         </div>
     )
 
