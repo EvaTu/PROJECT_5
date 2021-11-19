@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 
 function ProductCard({product}){
  
-    const { image, name, price, id, description} = product
+    const { image, name, price, id} = product
     
     return(
         <>

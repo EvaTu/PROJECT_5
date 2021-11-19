@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
-function Header({currentUser}){
+function Header(){
     const [click, setClick] = useState(false)
     const [button, setButton] = useState(true);
 

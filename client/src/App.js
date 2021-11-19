@@ -85,7 +85,7 @@ function App() {
     setDetailForm(updatedShopCart)
   }
   
-  console.log(currentUser)
+  // console.log(currentUser)
   return (
     <div className="App">
       <Header currentUser={currentUser} />
