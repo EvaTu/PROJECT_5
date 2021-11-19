@@ -7,17 +7,13 @@ function ProductCard({product}){
     
     return(
         <>
-        <li className="product-card">
             <Link className='product-card-link' to={`/ProductList/${id}`}>
-                <figure className='product-item-pic-wrap'>
-                    <img className= 'product-item-img' src={image} alt={name} id={id}/>
-                </figure>
                 <div className='product-item-info'>
+                    <img className= 'product-item-img' src={image} alt={name} id={id}/>
                     <h5 className='product-item-text'>{name}</h5>
                     <h5 className='product-item-text'>$ {price}</h5>
                 </div>
             </Link>
-        </li>
         </>
     )
 

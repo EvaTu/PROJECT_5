@@ -40,23 +40,25 @@ function SignUp({setCurrentUser}){
     }
 
     return(
-        <>
-        <h1>Sign Up Form Here</h1>
-        <form onSubmit={handelSubmit}>
-            <label>First Name: </label>
-            <input type="text" placeHolder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)}></input>
-            <label>Last Name: </label>
-            <input type="text" placeHolder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)}></input>
-            <label>Email: </label>
-            <input type="text" placeHolder="Email" value={email} onChange={e => setEmail(e.target.value)}></input>
-            <label>Password: </label>
-            <input type="password" placeHolder="Password" value={password} onChange={e => setPassword(e.target.value)}></input>
-            <label>Password Confirmation: </label>
-            <input type="password" placeHolder="Password Confirmation" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)}></input>
-            <input type="submit" value="Submit"/>
-        </form>
-        <h3>Thanks For Joining Us</h3>
-        </>
+        <div className="signup">
+          <div className="signupFormDiv">
+            <form id="signupForm" onSubmit={handelSubmit}>
+              <h1 style={{margin: "20px"}}>Join WWW </h1>
+              <label>First Name: </label>
+              <input className="formInput" type="text" placeHolder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)}></input>
+              <label>Last Name: </label>
+              <input className="formInput" type="text" placeHolder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)}></input>
+              <label>Email: </label>
+              <input className="formInput" type="text" placeHolder="Email" value={email} onChange={e => setEmail(e.target.value)}></input>
+              <label>Password: </label>
+              <input className="formInput" type="password" placeHolder="Password" value={password} onChange={e => setPassword(e.target.value)}></input>
+              <label>Password Confirmation: </label>
+              <input className="formInput" type="password" placeHolder="Password Confirmation" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)}></input>
+              <input type="submit" value="Submit"/>
+            </form>
+        
+        </div>
+      </div>
     )
 }
 

@@ -32,18 +32,20 @@ function LogIn({setCurrentUser}){
 
 
     return(
-        <div>
-        
-        <h1>Log In Form Here</h1>
-        <form onSubmit={handleSubmit}>
-            <label>Email: </label>
-            <input type="text" placeHolder="Email" value={email} onChange={ e => setEmail(e.target.value)}></input>
-            <label>Password: </label>
-            <input type="password" placeHolder="Password" value={password} onChange={ e => setPassword(e.target.value)}></input>
-            <input type="submit" value="Submit"/>
-        </form>
-        <h3>Welcome Back</h3>
-        </div>
+        <div className="login">
+          
+            <div className="loginFormDiv">
+              
+              <form id="loginForm" onSubmit={handleSubmit}>
+                  <h1 style={{margin: "20px"}}>Member Login</h1>
+                  <label>Email: </label>
+                  <input className="formInput" type="text" placeHolder="Email" value={email} onChange={ e => setEmail(e.target.value)}></input>
+                  <label>Password: </label>
+                  <input className="formInput" type="password" placeHolder="Password" value={password} onChange={ e => setPassword(e.target.value)}></input>
+                  <input type="submit" value="Submit"/>
+              </form>
+            </div>
+          </div>
     )
 }
 

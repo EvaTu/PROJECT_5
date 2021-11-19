@@ -10,13 +10,11 @@ function ProductList({products}){
 
     return(
         <div className="products">
-            <div className="product-container">
-                <div className="product-wrapper">
-                    <ul className="product-list-ul">
-                        {productCard}
-                    </ul>
-                </div>
-            </div>
+            
+            <ul className="product-cards">
+                {productCard}
+            </ul>
+               
         </div>
     )
 

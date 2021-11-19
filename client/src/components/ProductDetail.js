@@ -17,10 +17,10 @@ function ProductDetail({handelShoppingSub}){
    
     
     return(
-        <div id="product-detail">
+        <div className="product-detail">
             <img src={image} alt={name} />
             <h3>{name}</h3>
-            <h4>{price}</h4>
+            <h4>$ {price}</h4>
             <h5>{color}</h5>
             <h5>{description}</h5>
             <form onSubmit={e => handelShoppingSub(e,selectNum,clickedPro)}>

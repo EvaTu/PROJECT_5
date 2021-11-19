@@ -4,36 +4,30 @@ import React from 'react'
 function MyAccount({currentUser, handleLogout}){
     
 
-    function handleOrder(){
-        let productTotal =currentUser.orders.reduce((accumulator,element) => (accumulator+= element.select*element.product.price),0)
-        let taxFee = parseFloat(productTotal*0.08875).toFixed(2)
-        let deliveryFee =  productTotal === 0.0 || productTotal>75? 0.0: 20.0
-        let allTotal = (productTotal+parseFloat(taxFee)+deliveryFee).toFixed(2)
-        return allTotal
-    }
+    
 
     
     return(
-        <div>
+        <div className="myAccount-container">
             {currentUser.length === 0? 
-            (<h1>Please Login to View Order History</h1>)
+            (<div className="myAccount-no-log">
+                <h1>Please Login to View Order History</h1>
+            </div>)
             :
-            (<div>
-            <button onClick={handleLogout}>Logout</button>
+            (<div className="user-container">
+            <button style={{padding:"5px 30px 5px 30px", "margin-bottom":"30px"}} onClick={handleLogout}>Logout</button>
            
-            <p>Order Detail:</p>
-            <div>
+            <h2>Order Detail:</h2>
+            <div className="user-inner-container">
                 {currentUser.orders.map(item => 
                     (  
-                    <ul>
-                        <h4>{item.product.name}</h4>
-                        <h5>${item.product.price}</h5>
-                        <p>Order Date: {item.product.created_at.slice(0,10)}</p>
-                        <p>Order Qty: {item.select}</p>
+                    <ul className="user-inner-info">
+                        <h3 style={{"margin-bottom": "10px"}}>{item.product.name}</h3>
+                        <p>${item.product.price}</p>
+                        <p style={{"margin-bottom": "45px"}}>Order Qty: {item.select}</p>
                     </ul>
                     )
                 )}
-                <p>Order Total Amount: {handleOrder}</p>
             </div>
             </div>)}
             

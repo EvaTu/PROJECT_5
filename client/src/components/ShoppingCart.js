@@ -34,30 +34,30 @@ function ShoppingCart({detailForm,onDelete,setDetailForm,currentUser}){
 
 
     return(
-        <div>
-        <h1>Shopping List is here</h1>
+        <div className="shopping-cart-container">
+        <h1>Shopping Cart</h1>
         { emptyCart?
             (
-                <h1>You Have Nothing In Your Cart!!! </h1>
+                <h1 style={{"margin-top":"100px"}}>You Have Nothing In Your Cart!!! </h1>
             ):(
-            <div>
+            <div className="shopping-cart-inner">
                 {detailForm.map(item => 
                     (  
-                    <ul>
-                        <h4>{item.name}</h4>
-                        <h5>${item.price}</h5>
-                        <img src={item.image} style={{width:"100px", height:"100px"}}/>
-                        <p>{item.color}</p>
-                        <p>Order Qty: {item.select}</p>
-                        <button onClick={() => onDelete(item.id)}>Delete</button>
+                    <ul className="cart-inner-info">
+                        <h4 style={{"margin-top": "auto", "margin-bottom": "auto", "margin-left":"35px"}}>{item.name}</h4>
+                        <h4 style={{"margin-top": "auto", "margin-bottom": "auto", "margin-left":"35px"}}>${item.price}</h4>
+                        <img src={item.image} style={{width:"100px", height:"100px", margin:"35px"}}/>
+                        <p style={{"margin-top": "auto", "margin-bottom": "auto", "margin-left":"35px"}}>{item.color}</p>
+                        <p style={{"margin-top": "auto", "margin-bottom": "auto", "margin-left":"35px"}}>Order Qty: {item.select}</p>
+                        <button style={{"margin-top": "auto", "margin-bottom": "auto", "margin-left":"100px", padding:"20px"}} onClick={() => onDelete(item.id)}>Delete</button>
                     </ul>
                     )
                 )}
-                <h3>Product Total:  ${productTotal}</h3>
+                <h3 style={{"margin-top": "30px"}}>Product Total:  ${productTotal.toFixed(2)}</h3>
                 <h3>Tax: {taxFee}</h3>
                 <h3>Delivery Fee: {deliveryFee}</h3>
                 <h1>Total: {allTotal}</h1>
-                <button style={{margin:"15px"}} onClick={() => clickConfirm()}>Confirm Order and Check Out</button>
+                <button style={{margin:"15px", padding: "10px 30px 10px 30px"}} onClick={() => clickConfirm()}>Confirm Order and Check Out</button>
             </div>
         )}
         </div>

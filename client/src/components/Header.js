@@ -25,8 +25,10 @@ function Header({currentUser}){
     return(
         <div className="header">
             <div className="header-container">
-                <Link exact to="/" className="header-logo"><h1>Women Wear What</h1></Link>           
-                {currentUser.length === 0?(<p>Welcome to WWW</p>): (<p>Welcome {currentUser.first_name}</p>)}
+                <Link exact to="/" className="header-logo">
+                    <img width="130px" src="/www-logo.png"/>
+                </Link>           
+                
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                 </div>
